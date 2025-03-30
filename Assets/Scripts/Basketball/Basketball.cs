@@ -11,9 +11,12 @@ public class Basketball : MonoBehaviour
     public float bounceCoefficient = 0.6f;
     private Vector3 lastVelocity;
     public bool testmode = false;
+    private AudioSource bounceSound;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        bounceSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,6 +36,7 @@ public class Basketball : MonoBehaviour
         {
             rb.velocity = Vector3.Reflect(lastVelocity * bounceCoefficient, collision.contacts[0].normal);
             //rb.velocity = collision.impulse * bounceCoefficient;
+            bounceSound.Play();
             if(testmode)
                 print("basketball bounce occured");
         }

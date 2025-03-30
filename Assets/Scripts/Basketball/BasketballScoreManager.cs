@@ -33,12 +33,13 @@ public class BasketballScoreManager : GenericSingleton<BasketballScoreManager>
     }
     public void newGame()
     {
+        if (highScore < score)
+            highScore = score;
         gaming = true;
         score = 0;
         timer.StartTimer();
         ScoreChanged();
-        if (highScore < score)
-            highScore = score;
+
     }
     public void resetScore()
     {
